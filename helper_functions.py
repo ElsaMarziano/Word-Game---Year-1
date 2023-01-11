@@ -12,3 +12,12 @@ def possible_moves(move, path, max_location):
 
 def is_word(path):
     return True
+
+
+def start_coord(board):
+    """ THis function returns a list of all coordinates in a board """
+    coord_of_all = []
+    for i in range(len(board)):
+        for j in range(board[0]):
+            coord_of_all.append(i,j)
+    return coord_of_all

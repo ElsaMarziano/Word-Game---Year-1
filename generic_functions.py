@@ -2,13 +2,6 @@ from helper_functions import *
 
 """ This file will contain the four functions we have to write according to the exercise's pdf """
 
-def start_board_coords(board):
-    """give all the locations in board"""
-    coord_of_all = []
-    for i in range(len(board)):
-        for j in range(board[0]):
-            coord_of_all.append(i,j)
-    return coord_of_all
 
 def is_valid_path(board, path, words):
     """ This function receives a board, a path and a list of words, check if the path is legal and
@@ -22,27 +15,26 @@ def find_length_n_paths(n, board, words):
     pass
 
 
-
-def find_length_helper(n, loc, list_of_paths, this_path, start_board_coords, words):
+def find_length_helper(n: int, loc: tuple, list_of_paths: list[tuple], this_path: list, start_board_coords: list[tuple], words: list, board):
     this_path.append(loc)
     if len(this_path) == n:
-        if is_word(this_path):
+        if is_word(this_path, board):
             list_of_paths.append(this_path)
             return list_of_paths
         if len(start_board_coords) > 0:
             list_of_paths = find_length_helper(
-                n, start_board_coords[0], list_of_paths, [], start_board_coords[1:], words)
+                n, start_board_coords[0], list_of_paths, [], start_board_coords[1:], words, board)
         else:
             return list_of_paths
         # has the tuple [len[board],len[board[0]]
         for next_loc in possible_moves(loc, this_path, start_board_coords[-1]):
             list_of_paths = find_length_helper(
-            n, next_loc, list_of_paths, [],  start_board_coords[1:], words)
+            n, next_loc, list_of_paths, [],  start_board_coords[1:], words, board)
             
 
 def find_length_n_words(n, board, words):
     """ This function returns all the possible paths for each word in the words dictionary """
-    return find_length_helper(n, (0, 0), [], [], board, words)
+    return find_length_helper(n, (0, 0), [], [], start_coord(board), words, board)
 
 
 def max_score_paths(board, words):
