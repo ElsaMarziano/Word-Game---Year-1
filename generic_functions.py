@@ -1,10 +1,18 @@
 """ This file will contain the four functions we have to write according to the exercise's pdf """
 
+def possible_move(move,board):
+    legal_move = []
+    dirction_list = [(1,0),(0,1),(-1,0),(0,-1),(-1,-1),(-1,1),(1,1),(1,-1)]
+    for possible_move in dirction_list:
+        if 0 < possible_move[0] + move[0] < len(board) and 0=< possible_move[1] + move[1] <len(board[0]):
+            legal_move.append(move)
+    return legal_move
 
 
 def is_valid_path(board, path, words):
     """ This function receives a board, a path and a list of words, check if the path is legal and
     if so, returns the word we formed, if it exists in the words dictionary """
+
     pass 
 
 def find_length_n_paths(n, board, words):
