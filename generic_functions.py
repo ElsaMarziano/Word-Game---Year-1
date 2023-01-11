@@ -1,6 +1,7 @@
 from helper_functions import *
 from boggle_board_randomizer import *
 
+
 """ This file will contain the four functions we have to write according to the exercise's pdf """
 
 
@@ -32,7 +33,7 @@ def find_length_n_paths(n, board, words):
 
 
 def find_length_helper(n: int, loc: tuple, list_of_paths: list[tuple], this_path: list, start_board_coords: list[tuple],\
-    words: list, filtered_words: list, board):
+    words: list, filtered_words: list, board :list[list]):
     """ This function finds all possible combinations of path """
     # Backtracking - check there are words starting with those letters, else return
     filtered_words = filtered(filtered_words, form_word(this_path, board))
@@ -63,7 +64,7 @@ def find_length_n_words(n, board, words):
     return find_length_helper(n, (0, 0), [], [], start_coord(board), new_words, new_words, board)
 
 
-board = [['QU', 'I', 'T', 'F'], ['S', 'A', 'Y', 'L'], ['E', 'E', 'X', 'L'], ['E', 'H', 'I', 'H']]
+board = [['S', 'I', 'T', 'F'], ['S', 'A', 'Y', 'L'], ['E', 'E', 'X', 'L'], ['E', 'H', 'I', 'H']]
 print(board)
 print(find_length_n_words(2, board , ["SA"] ))
 
