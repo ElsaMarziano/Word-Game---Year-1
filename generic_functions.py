@@ -2,7 +2,12 @@ from helper_functions import *
 
 """ This file will contain the four functions we have to write according to the exercise's pdf """
 
-
+def start_coord(board):
+    coord_of_all = []
+    for i in range(len(board)):
+        for j in range(board[0]):
+            coord_of_all.append(i,j)
+    return coord_of_all
 
 def is_valid_path(board, path, words):
     """ This function receives a board, a path and a list of words, check if the path is legal and
