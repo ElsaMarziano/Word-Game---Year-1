@@ -4,10 +4,16 @@ def possible_move(move,board):
     legal_move = []
     dirction_list = [(1,0),(0,1),(-1,0),(0,-1),(-1,-1),(-1,1),(1,1),(1,-1)]
     for possible_move in dirction_list:
-        if 0 < possible_move[0] + move[0] < len(board) and 0=< possible_move[1] + move[1] <len(board[0]):
+        if 0 <= possible_move[0] + move[0] < len(board) and 0 <= possible_move[1] + move[1] <len(board[0]):
             legal_move.append(move)
     return legal_move
 
+def start_coord(board):
+    coord_of_all = []
+    for i in range(len(board)):
+        for j in range(board[0]):
+            coord_of_all.append(i,j)
+    return coord_of_all
 
 def is_valid_path(board, path, words):
     """ This function receives a board, a path and a list of words, check if the path is legal and
