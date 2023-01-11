@@ -45,7 +45,7 @@ def find_length_helper(n: int, loc: tuple, list_of_paths: list[tuple], this_path
         # has the tuple [len[board],len[board[0]]
         for next_loc in possible_moves(loc, this_path, start_board_coords[-1]):
             list_of_paths = find_length_helper(
-            n, next_loc, list_of_paths, [],  start_board_coords[1:], words, board)
+            n, next_loc, list_of_paths, this_path,  start_board_coords[1:], words, board)
             
 
 def find_length_n_words(n, board, words):
