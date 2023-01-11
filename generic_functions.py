@@ -1,12 +1,6 @@
-""" This file will contain the four functions we have to write according to the exercise's pdf """
+from helper_functions import *
 
-def possible_move(move,board):
-    legal_move = []
-    dirction_list = [(1,0),(0,1),(-1,0),(0,-1),(-1,-1),(-1,1),(1,1),(1,-1)]
-    for possible_move in dirction_list:
-        if 0 <= possible_move[0] + move[0] < len(board) and 0 <= possible_move[1] + move[1] <len(board[0]):
-            legal_move.append(move)
-    return legal_move
+""" This file will contain the four functions we have to write according to the exercise's pdf """
 
 def start_board_coords(board):
     """give all the locations in board"""
@@ -20,39 +14,37 @@ def is_valid_path(board, path, words):
     """ This function receives a board, a path and a list of words, check if the path is legal and
     if so, returns the word we formed, if it exists in the words dictionary """
 
-    pass 
+    pass
+
 
 def find_length_n_paths(n, board, words):
     """ This function returns all the paths of size n that form a legal word """
     pass
 
-def find_length_helper(n,loc,list_of_paths,this_path,start_board_coords,words):
+
+
+def find_length_helper(n, loc, list_of_paths, this_path, start_board_coords, words):
     this_path.append(loc)
     if len(this_path) == n:
         if is_word(this_path):
             list_of_paths.append(this_path)
             return list_of_paths
-            if len(start_board_coords) > 0:
-                list_of_paths = find_length_helper(n, start_board_coords[0] , list_of_paths, [],/
-                                        start_board_coords[1:], words)
-            else:
-                return list_of_paths
-            for next_loc in possiable_location(loc,this_path,board,start_board_coords[-1]) # has the tuple [len[board],len[board[0]]
-                list_of_paths = find_length_helper(n, next_loc, list_of_paths, [],/
-                                start_board_coords[1:], words)
-
-
-
-
-
-
-
-
+        if len(start_board_coords) > 0:
+            list_of_paths = find_length_helper(
+                n, start_board_coords[0], list_of_paths, [], start_board_coords[1:], words)
+        else:
+            return list_of_paths
+        # has the tuple [len[board],len[board[0]]
+        for next_loc in possible_moves(loc, this_path, start_board_coords[-1]):
+            list_of_paths = find_length_helper(
+            n, next_loc, list_of_paths, [],  start_board_coords[1:], words)
+            
 
 def find_length_n_words(n, board, words):
     """ This function returns all the possible paths for each word in the words dictionary """
-    pass
-    
+    return find_length_helper(n, (0, 0), [], [], board, words)
+
+
 def max_score_paths(board, words):
     """ This function returns the maximal possible score for all the path in the words dictionary """
     pass
