@@ -18,7 +18,7 @@ def find_length_n_paths(n, board, words):
 def find_length_helper(n: int, loc: tuple, list_of_paths: list[tuple], this_path: list, start_board_coords: list[tuple], words: list, board):
     this_path.append(loc)
     if len(this_path) == n:
-        if is_word(this_path, board):
+        if is_word(this_path, board, words):
             list_of_paths.append(this_path)
             return list_of_paths
         if len(start_board_coords) > 0:

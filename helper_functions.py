@@ -10,8 +10,12 @@ def possible_moves(move, path, max_location):
     return legal_move
 
 
-def is_word(path):
-    return True
+def is_word(path, board, words):
+    """ This function gets a path and checks if the word formed by the given path forms a word in our dictionary """
+    my_word = ""
+    for coordinate in path:
+        my_word += board[coordinate[0]][coordinate[1]]
+    return my_word in words
 
 
 def start_coord(board):
