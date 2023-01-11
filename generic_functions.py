@@ -8,7 +8,8 @@ def possible_move(move,board):
             legal_move.append(move)
     return legal_move
 
-def start_coord(board):
+def start_board_coords(board):
+    """give all the locations in board"""
     coord_of_all = []
     for i in range(len(board)):
         for j in range(board[0]):
