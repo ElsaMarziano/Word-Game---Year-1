@@ -12,16 +12,28 @@ def possible_moves(move, path, max_location):
 
 def is_word(path, board, words):
     """ This function gets a path and checks if the word formed by the given path forms a word in our dictionary """
+    return form_word(path, board) in words
+
+
+def form_word(path, board):
+    """ This function forms the word we want """
     my_word = ""
     for coordinate in path:
         my_word += board[coordinate[0]][coordinate[1]]
-    return my_word in words
+    return my_word
 
 
 def start_coord(board):
     """ THis function returns a list of all coordinates in a board """
     coord_of_all = []
-    for i in range(len(board)):
-        for j in range(board[0]):
-            coord_of_all.append(i,j)
+    for row in range(len(board)):
+        for col in range(len(board[0])):
+            coord_of_all.append((row, col))
     return coord_of_all
+
+
+def filtered(words, string):
+    """ This function returns a filtered version of words """
+    new_words = list(filter(lambda word: word.startswith(string), words))
+    return new_words
+
