@@ -6,6 +6,21 @@ from helper_functions import *
 def is_valid_path(board, path, words):
     """ This function receives a board, a path and a list of words, check if the path is legal and
     if so, returns the word we formed, if it exists in the words dictionary """
+    word = ""
+    for step in range(len(path)):
+        if step == len(path) -1:
+            if word in words:
+                return word
+            return
+        if path[step +1] not in possible_moves(step,path[:step+1],(len(board) - 1,len(board[0]) - 1)):
+            return
+        else:
+            word += str(board[path[0][path[1]]])
+    return word
+
+
+
+
 
     pass
 
@@ -22,6 +37,7 @@ def find_length_helper(n: int, loc: tuple, list_of_paths: list[tuple], this_path
             list_of_paths.append(this_path)
             return list_of_paths
         if len(start_board_coords) > 0:
+            # call the function from the the next tuple,start[1:] and start from there
             list_of_paths = find_length_helper(
                 n, start_board_coords[0], list_of_paths, [], start_board_coords[1:], words, board)
         else:
