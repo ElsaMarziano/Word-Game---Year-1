@@ -22,6 +22,16 @@ class App:
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
         root.geometry(alignstr)
         root.resizable(width=False, height=False)
+
+        # Create a PhotoImage object for the background image
+        #self.bg_image = PhotoImage(file="path/to/image.png")
+
+        # Set the background image
+        #self.root.config(bg="", bd=0, highlightthickness=0)
+
+        #self.root.config(bg='white')
+        #self.root.config(image=self.bg_image)
+
         self.end_time = None
         self.countdown_label = tk.Label(root, text="", font=("Arial", 20))
         self.countdown_label.place(x=width - 200, y=10)
