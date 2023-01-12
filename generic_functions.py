@@ -66,5 +66,5 @@ def find_length_n_words(n, board, words):
 
 def max_score_paths(board, words):
     """ This function returns the maximal possible score for all the path in the words dictionary """
-    pass
+
 
