@@ -225,14 +225,14 @@ class App:
         num_score.place(x=110,y=15,width=70,height=30)
 
 
-        GLabel_219=tk.Label(root)
-        GLabel_219["bg"] = "#ecf2f2"
+        current_word=tk.Label(root)
+        current_word["bg"] = "#ecf2f2"
         ft = tkFont.Font(family='Ariel',size=28)
-        GLabel_219["font"] = ft
-        GLabel_219["fg"] = "#01040b"
-        GLabel_219["justify"] = "center"
-        GLabel_219["text"] = "current_word"
-        GLabel_219.place(x=130,y=70,width=216,height=30)
+        current_word["font"] = ft
+        current_word["fg"] = "#01040b"
+        current_word["justify"] = "center"
+        current_word["text"] = "current_word"
+        current_word.place(x=130,y=70,width=216,height=30)
 
         submit=tk.Button(root)
         submit["bg"] = "#f0f0f0"
@@ -247,9 +247,12 @@ class App:
 
 
 
+    def choose_letter(self,corr):
+        self.current_word["text"] = self.current_word["text"] + self.board[corr[0]][corr[1]]
 
     def Button_0_3_command(self):
         print("(0,3)")
+        self.choose_letter((0,3))
 
 
     def Button_1_3_command(self):
