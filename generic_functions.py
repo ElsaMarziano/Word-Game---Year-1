@@ -112,8 +112,8 @@ def find_length_helper_n(n, loc, list_of_paths, this_path, start_board_coords, w
 
 board = [['S', 'I', 'T', 'F'], \
         ['S', 'A', 'Y', 'L'], \
-        ['EA', 'E', 'X', 'L'], \
-        ['E', 'H', 'I', 'H']]
+        ['EA', 'E', 'SA', 'L'], \
+        ['E', 'H', 'I', 'S']]
 
 words = ["EA", "SA", "SASS", "XL"]
 
