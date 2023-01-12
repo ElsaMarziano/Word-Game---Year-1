@@ -7,6 +7,7 @@ import tkinter.font as tkFont
 #TODO do that the game isnt starting untill start is press
 #TODO make the countdown pause game when eneded
 #TODO ask CHATGPT about evreythingggg
+# TODO make sure u can press start only once
 
 class App:
     def __init__(self, root,board):
