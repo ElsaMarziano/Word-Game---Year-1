@@ -2,6 +2,12 @@ import datetime
 import tkinter as tk
 import tkinter.font as tkFont
 
+#TODO make in class path been taken.
+#TODO make word so it can add score
+#TODO do that the game isnt starting untill start is press
+#TODO make the countdown pause game when eneded
+#TODO ask CHATGPT about evreythingggg
+
 class App:
     def __init__(self, root,board):
         #setting title
@@ -329,11 +335,11 @@ class App:
 
     def Button_2_0_command(self):
         print("(2,0")
-        self.update_current_word(self.self.board[2][0])
+        self.update_current_word(self.board[2][0])
 
     def Button_3_0_command(self):
         print("(3,0")
-        self.update_current_word(self.self.board[3][0])
+        self.update_current_word(self.board[3][0])
 
     def submit_command(self):
         print("command")
