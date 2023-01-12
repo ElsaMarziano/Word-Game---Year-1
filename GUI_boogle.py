@@ -3,9 +3,10 @@ import tkinter as tk
 import tkinter.font as tkFont
 
 class App:
-    def __init__(self, root):
+    def __init__(self, root,board):
         #setting title
         self.root = root
+        self.board = board
         root.title("undefined")
         #setting window size
         width=504
@@ -36,7 +37,7 @@ class App:
         Button_3_0["font"] = ft
         Button_3_0["fg"] = "#000000"
         Button_3_0["justify"] = "center"
-        Button_3_0["text"] = "Button1"
+        Button_3_0["text"] = str(self.board[3][0])
         Button_3_0.place(x=250,y=170,width=70,height=70)
         Button_3_0["command"] = self.Button_0_3_command
 
@@ -47,7 +48,7 @@ class App:
         Button_1_3["font"] = ft
         Button_1_3["fg"] = "#000000"
         Button_1_3["justify"] = "center"
-        Button_1_3["text"] = "Button"
+        Button_1_3["text"] = str(self.board[1][3])
         Button_1_3.place(x=250,y=250,width=70,height=70)
         Button_1_3["command"] = self.Button_1_3_command
 
@@ -58,7 +59,7 @@ class App:
         Button_2_3["font"] = ft
         Button_2_3["fg"] = "#000000"
         Button_2_3["justify"] = "center"
-        Button_2_3["text"] = "Button"
+        Button_2_3["text"] = str(self.board[2][3])
         Button_2_3.place(x=250,y=330,width=70,height=70)
         Button_2_3["command"] = self.Button_2_3_command
 
@@ -69,7 +70,7 @@ class App:
         Button_3_3["font"] = ft
         Button_3_3["fg"] = "#000000"
         Button_3_3["justify"] = "center"
-        Button_3_3["text"] = "Button"
+        Button_3_3["text"] = str(self.board[3][3])
         Button_3_3.place(x=250,y=410,width=70,height=70)
         Button_3_3["command"] = self.Button_3_3_command
 
@@ -80,7 +81,7 @@ class App:
         Button_0_2["font"] = ft
         Button_0_2["fg"] = "#000000"
         Button_0_2["justify"] = "center"
-        Button_0_2["text"] = "Button"
+        Button_0_2["text"] = str(self.board[0][2])
         Button_0_2.place(x=170,y=170,width=70,height=70)
         Button_0_2["command"] = self.Button_0_2_command
 
@@ -91,7 +92,7 @@ class App:
         Button_1_2["font"] = ft
         Button_1_2["fg"] = "#000000"
         Button_1_2["justify"] = "center"
-        Button_1_2["text"] = "Button"
+        Button_1_2["text"] = str(self.board[1][2])
         Button_1_2.place(x=170,y=250,width=70,height=70)
         Button_1_2["command"] = self.Button_1_2_command
 
@@ -102,7 +103,7 @@ class App:
         Button_2_2["font"] = ft
         Button_2_2["fg"] = "#000000"
         Button_2_2["justify"] = "center"
-        Button_2_2["text"] = "Button"
+        Button_2_2["text"] = str(self.board[2][2])
         Button_2_2.place(x=170,y=330,width=70,height=70)
         Button_2_2["command"] = self.Button_2_2_command
 
@@ -113,7 +114,7 @@ class App:
         Button_3_2["font"] = ft
         Button_3_2["fg"] = "#000000"
         Button_3_2["justify"] = "center"
-        Button_3_2["text"] = "Button"
+        Button_3_2["text"] = str(self.board[3][2])
         Button_3_2.place(x=170,y=410,width=70,height=70)
         Button_3_2["command"] = self.Button_3_2_command
 
@@ -124,7 +125,7 @@ class App:
         Button_0_1["font"] = ft
         Button_0_1["fg"] = "#000000"
         Button_0_1["justify"] = "center"
-        Button_0_1["text"] = "Button"
+        Button_0_1["text"] = str(self.board[0][1])
         Button_0_1.place(x=90,y=170,width=70,height=70)
         Button_0_1["command"] = self.Button_0_1_command
 
@@ -135,7 +136,7 @@ class App:
         Button_2_1["font"] = ft
         Button_2_1["fg"] = "#000000"
         Button_2_1["justify"] = "center"
-        Button_2_1["text"] = "Button"
+        Button_2_1["text"] = str(self.board[2][1])
         Button_2_1.place(x=90,y=330,width=70,height=70)
         Button_2_1["command"] = self.Button_2_1_command
 
@@ -146,7 +147,7 @@ class App:
         Button_3_1["font"] = ft
         Button_3_1["fg"] = "#000000"
         Button_3_1["justify"] = "center"
-        Button_3_1["text"] = "Button"
+        Button_3_1["text"] = str(self.board[3][1])
         Button_3_1.place(x=90,y=410,width=70,height=70)
         Button_3_1["command"] = self.Button_3_1_command
 
@@ -157,7 +158,7 @@ class App:
         Button_1_1["font"] = ft
         Button_1_1["fg"] = "#000000"
         Button_1_1["justify"] = "center"
-        Button_1_1["text"] = "Button"
+        Button_1_1["text"] = str(self.board[1][1])
         Button_1_1.place(x=90,y=250,width=70,height=70)
         Button_1_1["command"] = self.Button_1_1_command
 
@@ -168,7 +169,7 @@ class App:
         Button_0_0["font"] = ft
         Button_0_0["fg"] = "#000000"
         Button_0_0["justify"] = "center"
-        Button_0_0["text"] = "Button"
+        Button_0_0["text"] = str(self.board[0][0])
         Button_0_0.place(x=10,y=170,width=70,height=70)
         Button_0_0["command"] = self.Button_0_0_command
 
@@ -179,7 +180,7 @@ class App:
         Button_1_0["font"] = ft
         Button_1_0["fg"] = "#000000"
         Button_1_0["justify"] = "center"
-        Button_1_0["text"] = "Button"
+        Button_1_0["text"] = str(self.board[1][0])
         Button_1_0.place(x=10,y=250,width=70,height=70)
         Button_1_0["command"] = self.Button_1_0_command
 
@@ -190,7 +191,7 @@ class App:
         Button_2_0["font"] = ft
         Button_2_0["fg"] = "#000000"
         Button_2_0["justify"] = "center"
-        Button_2_0["text"] = "Button"
+        Button_2_0["text"] = str(self.board[2][0])
         Button_2_0.place(x=10,y=330,width=70,height=70)
         Button_2_0["command"] = self.Button_2_0_command
 
@@ -201,7 +202,7 @@ class App:
         Button_3_0["font"] = ft
         Button_3_0["fg"] = "#000000"
         Button_3_0["justify"] = "center"
-        Button_3_0["text"] = "Button"
+        Button_3_0["text"] = str(self.board[3][0])
         Button_3_0.place(x=10,y=410,width=70,height=70)
         Button_3_0["command"] = self.Button_3_0_command
 
@@ -320,16 +321,25 @@ class App:
         self.root.after(1000, self.update_countdown)
 
     def update_countdown(self):
-        if datetime.datetime.now()  > self.end_time:
+        if datetime.datetime.now() > self.end_time:
             self.countdown_label.config(text="Time's up!")
         else:
             time_left = self.end_time - datetime.datetime.now()
-            self.countdown_label.config(text=str(time_left))
+            minutes, seconds = divmod(time_left.seconds, 60)
+            hours, minutes = divmod(minutes, 60)
+            self.countdown_label.config(text='{:02d}:{:02d}:{:02d}'.format(hours, minutes, seconds))
             self.root.after(1000, self.update_countdown)
+
     def set_score(self,score):
         num_score["text"] += score
 
+
 if __name__ == "__main__":
+    board =[['R', 'R', 'R', 'B'],
+ ['E', 'S', 'S', 'P'],
+ ['I', 'M', 'N', 'C'],
+ ['I', 'E', 'A', 'T']]
+
     root = tk.Tk()
-    app = App(root)
+    app = App(root,board)
     root.mainloop()
