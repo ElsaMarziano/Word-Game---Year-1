@@ -23,13 +23,11 @@ def is_valid_path(board, path, words):
 
 
 
-
-    pass
-
-
 def find_length_n_paths(n, board, words):
     """ This function returns all the paths of size n that form a legal word """
-    pass
+    #TODO Add case insensitive ???
+    new_words = list(filter(lambda word: len(word) >= n, words))
+    return find_length_helper(n, (0, 0), [], [], start_coord(board)[1:], new_words, new_words, board)
 
 def find_length_helper(n: int, loc: tuple, list_of_paths: list[tuple], this_path: list, start_board_coords: list[tuple],\
     words: list, filtered_words: list, board):
@@ -63,53 +61,17 @@ def find_length_helper(n: int, loc: tuple, list_of_paths: list[tuple], this_path
 
 def find_length_n_words(n, board, words):
     """ This function returns all the possible paths for each word in the words dictionary """
-    #TODO Add case insensitive ???
-    new_words = list(filter(lambda word: len(word) >= n, words))
-    return find_length_helper(n, (0, 0), [], [], start_coord(board)[1:], new_words, new_words, board)
+    pass
 
 
 board = [['S', 'I', 'T', 'F'], \
         ['S', 'A', 'Y', 'L'], \
-        ['E', 'E', 'X', 'L'], \
-        ['E', 'H', 'I', 'H']]
+        ['E', 'E', 'X', 'S'], \
+        ['E', 'H', 'I', 'A']]
 
-print(find_length_n_words(2, board , ["EA", "SA", "SASS", "XL"] ))
+print(find_length_n_paths(2, board , ["EA", "SA", "SASS", "XL"] ))
 
 def max_score_paths(board, words):
     """ This function returns the maximal possible score for all the path in the words dictionary """
     pass
 
-    # def find_length_n_paths(n, board, words):
-    #     # Function to check if a move is valid
-    #     def is_valid_move(x, y, visited):
-    #         # check if the current cell is in the board and hasn't been visited before
-    #         if x < 0 or x >= len(board) or y < 0 or y >= len(board[0]) or visited[x][y]:
-    #             return False
-    #         return True
-    #
-    #     # Function that does the DFS
-    #     def dfs(x, y, visited, word):
-    #         # add the current letter to the word and mark the cell as visited
-    #         word += board[x][y]
-    #         visited[x][y] = True
-    #         # if the word has reached the desired length, check if it's a legal word
-    #         if len(word) == n:
-    #             if word in words:
-    #                 legal_paths.append(word)
-    #             visited[x][y] = False
-    #             return
-    #         # check all adjacent cells
-    #         for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0), (-1, -1), (1, 1), (-1, 1), (1, -1)]:
-    #             new_x, new_y = x + dx, y + dy
-    #             if is_valid_move(new_x, new_y, visited):
-    #                 dfs(new_x, new_y, visited, word)
-    #         # backtrack
-    #         visited[x][y] = False
-    #
-    #     legal_paths = []
-    #     visited = [[False for _ in range(len(board[0]))] for _ in range(len(board))]
-    #     # starting from every cell on the board
-    #     for i in range(len(board)):
-    #         for j in range(len(board[0])):
-    #             dfs(i, j, visited, "")
-    #     return legal_paths
