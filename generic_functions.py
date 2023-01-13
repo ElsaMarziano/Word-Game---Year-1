@@ -44,7 +44,6 @@ def find_length_helper(n: int, loc: tuple, list_of_paths: list[tuple], this_path
         if is_word(this_path, board, words):
             list_of_paths.append(copy.deepcopy(this_path))
         return list_of_paths
-
     else:
         # Go over every possibility for this particular coordinate
         for next_loc in possible_moves(loc, this_path, (len(board), len(board[0]))):
@@ -65,7 +64,7 @@ def find_length_n_words(n, board, words):
 
 def max_score_paths(board, words):
     """ This function returns the maximal possible score for all the path in the words dictionary """
-    list_of_paths = []
+    score = 0
     words_left = []
     for index in range(16, 0, -1):
         new_words = list(filter(lambda word: len(word) == index, words)) + words_left
@@ -73,29 +72,30 @@ def max_score_paths(board, words):
         if len(new_words) > 0:
             words_left = new_words
             for start_loc in start_coord(board):
-                list_of_paths, words_left =  find_score_helper(index, start_loc, list_of_paths, [], words_left, words_left, board)
-    return list_of_paths
+                score, words_left =  find_score_helper(index, start_loc, score, [], words_left, words_left, board)
+    return score
 
 
 
 
-def find_score_helper(n: int, loc: tuple, list_of_paths: list[tuple], this_path: list, \
+def find_score_helper(n: int, loc: tuple, score: int, this_path: list, \
     words: list, filtered_words: list, board: list[list]):
     """ This function finds all possible combinations of path """
     # Backtracking - check there are words starting with those letters, else return
     this_path.append(loc)
     filtered_words = filtered(filtered_words, form_word(this_path, board))
-    if len(words) == 0:
-        return list_of_paths, []
-    if len(filtered_words) == 0: 
-        return list_of_paths, words
+    # If there are no more options, return
+    if len(words) == 0 or len(filtered_words) == 0:
+        return score, words
+    #If we found a word, add and return
     if len(form_word(this_path, board)) == n: 
         if is_word(this_path, board, words):
             words = remove_word(words, form_word(this_path, board))
-            list_of_paths.append(copy.deepcopy(this_path))
-        return list_of_paths, words
+            score += len(this_path) ** 2
+        return score, words
     else:
         for next_loc in possible_moves(loc, this_path, (len(board), len(board[0]))):
-            list_of_paths, words = find_score_helper(n, next_loc, list_of_paths, this_path, words, filtered_words, board)
-            this_path.pop()
-    return list_of_paths, words
+            score, words = find_score_helper(n, next_loc, score, this_path, words, filtered_words, board)
+            this_path.pop() # Cleaning up
+    return score, words
+
