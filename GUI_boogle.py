@@ -2,11 +2,12 @@ import datetime
 import tkinter as tk
 import tkinter.font as tkFont
 
-#TODO make in class path been taken.
-#TODO make word so it can add score
+#TODO make the big program
+#TODO find out how score is calc? current not good
 #TODO ask CHATGPT about evreythingggg
-# TODO dicorat
-# TODO how to close the game?
+#TODO dicorate
+#TODO how to close the game?
+#TODO change what happen when time is ened?
 
 
 class App:
