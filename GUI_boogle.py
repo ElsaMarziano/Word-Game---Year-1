@@ -7,10 +7,10 @@ import tkinter.font as tkFont
 #TODO do that the game isnt starting untill start is press
 #TODO make the countdown pause game when eneded
 #TODO ask CHATGPT about evreythingggg
-# TODO make sure u can press start only once
+
 
 class App:
-    def __init__(self, root,board):
+    def __init__(self, root,board,legal_paths):
         #setting title
         self.root = root
         self.board = board
@@ -23,6 +23,10 @@ class App:
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
         root.geometry(alignstr)
         root.resizable(width=False, height=False)
+        self.time_started = False
+        self.legal_paths = legal_paths #get from big program
+        self.current_path =[] #update every press
+        self.pause = True
 
         # Create a PhotoImage object for the background image
         #self.bg_image = PhotoImage(file="path/to/image.png")
@@ -255,7 +259,7 @@ class App:
         num_score["font"] = ft
         num_score["fg"] = "#333333"
         num_score["justify"] = "center"
-        num_score["text"] = "0"
+        num_score["text"] = 0
         num_score.place(x=110,y=15,width=70,height=30)
         self.num_score = num_score
 
@@ -287,82 +291,107 @@ class App:
 
     def Button_0_3_command(self):
         print("(0,3)")
-        self.update_current_word(board[0][3])
+        if not self.pause:
+            self.update_current_word(board[0][3])
 
 
 
     def Button_1_3_command(self):
         print("(1,3)")
-        self.update_current_word(self.board[1][3])
+        if not self.pause:
+            self.update_current_word((1,3))
 
     def Button_2_3_command(self):
         print("(2,3)")
-        self.update_current_word(self.board[2][3])
+        if not self.pause:
+            self.update_current_word((2,3))
 
     def Button_3_3_command(self):
         print("(3,3)")
-        self.update_current_word(self.board[3][3])
+        if not self.pause:
+            self.update_current_word((3,3))
 
     def Button_0_2_command(self):
         print("(0,2)")
-        self.update_current_word(self.board[0][2])
+        if not self.pause:
+            self.update_current_word((0,2))
 
     def Button_1_2_command(self):
         print("(1,2)")
-        self.update_current_word(self.board[1][2])
+        if not self.pause:
+            self.update_current_word((1,2))
 
     def Button_2_2_command(self):
         print("(2,2)")
-        self.update_current_word(self.board[2][2])
+        if not self.pause:
+            self.update_current_word((2,2))
 
     def Button_3_2_command(self):
         print("(3,2)")
-        self.update_current_word(self.board[3][2])
+        if not self.pause:
+            self.update_current_word((3,2))
 
     def Button_0_1_command(self):
         print("(0,1)")
-        self.update_current_word(self.board[0][1])
+        if not self.pause:
+            self.update_current_word((0,1))
 
 
     def Button_2_1_command(self):
         print("(2,1)")
-        self.update_current_word(self.board[2][1])
+        if not self.pause:
+            self.update_current_word((2,1))
 
     def Button_3_1_command(self):
         print("(3,1)")
-        self.update_current_word(self.board[3][1])
+        if not self.pause:
+            self.update_current_word((3,1))
 
     def Button_1_1_command(self):
         print("(1,1)")
-        self.update_current_word(self.board[1][1])
+        if not self.pause:
+            self.update_current_word((1,1))
 
     def Button_0_0_command(self):
         print("(0,0")
-        self.update_current_word(self.board[0][0])
+        if not self.pause:
+            self.update_current_word((0,0))
 
     def Button_1_0_command(self):
         print("(1,0")
-        self.update_current_word(self.board[1][0])
+        if not self.pause:
+            self.update_current_word((1,0))
 
     def Button_2_0_command(self):
         print("(2,0")
-        self.update_current_word(self.board[2][0])
+        if not self.pause:
+            self.update_current_word((2,0))
 
     def Button_3_0_command(self):
         print("(3,0")
-        self.update_current_word(self.board[3][0])
+        if not self.pause:
+            self.update_current_word((3,0))
 
     def submit_command(self):
-        print("command")
+        print(self.current_path)
+        if self.current_path in self.legal_paths:
+            self.set_score(1)
+        self.current_path = []
+        self.current_word = ""
+
 
 
     def start_countdown(self):
-        self.end_time = datetime.datetime.now() + datetime.timedelta(minutes=3)
-        self.root.after(1000, self.update_countdown)
+        if not self.time_started:
+            self.end_time = datetime.datetime.now() + datetime.timedelta(minutes=3)
+            self.root.after(1000, self.update_countdown)
+            self.time_started = True
+            self.pause = False
 
     def update_countdown(self):
         if datetime.datetime.now() > self.end_time:
             self.countdown_label.config(text="Time's up!")
+            self.pause = True
         else:
             time_left = self.end_time - datetime.datetime.now()
             minutes, seconds = divmod(time_left.seconds, 60)
@@ -371,10 +400,11 @@ class App:
             self.root.after(1000, self.update_countdown)
 
     def set_score(self,score):
-        num_score["text"] += score
+        self.num_score["text"] += score
 
-    def update_current_word(self, word):
-        self.current_word.config(text=self.current_word.cget("text") + word)
+    def update_current_word(self, word_corr):
+        self.current_word.config(text=self.current_word.cget("text") + self.board[word_corr[0]][word_corr[1]])
+        self.current_path.append(word_corr)
 
 
 if __name__ == "__main__":
@@ -384,5 +414,5 @@ if __name__ == "__main__":
  ['I', 'E', 'A', 'T']]
 
     root = tk.Tk()
-    app = App(root,board)
+    app = App(root,board,[[(3,1),(3,2),(3,3)]])
     root.mainloop()
