@@ -4,9 +4,9 @@ import tkinter.font as tkFont
 
 #TODO make in class path been taken.
 #TODO make word so it can add score
-#TODO do that the game isnt starting untill start is press
-#TODO make the countdown pause game when eneded
 #TODO ask CHATGPT about evreythingggg
+# TODO dicorat
+# TODO how to close the game?
 
 
 class App:
@@ -27,6 +27,7 @@ class App:
         self.legal_paths = legal_paths #get from big program
         self.current_path =[] #update every press
         self.pause = True
+        self.path_already_chosen = []
 
         # Create a PhotoImage object for the background image
         #self.bg_image = PhotoImage(file="path/to/image.png")
@@ -374,10 +375,11 @@ class App:
 
     def submit_command(self):
         print(self.current_path)
-        if self.current_path in self.legal_paths:
+        if self.current_path in self.legal_paths and self.current_path not in self.path_already_chosen:
             self.set_score(1)
+            self.path_already_chosen.append(self.current_path)
         self.current_path = []
-        self.current_word = ""
+        self.current_word["text"]= ""
 
 
 
