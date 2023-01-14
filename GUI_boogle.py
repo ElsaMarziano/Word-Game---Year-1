@@ -8,6 +8,8 @@ import tkinter.font as tkFont
 #TODO dicorate
 #TODO how to close the game?
 #TODO change what happen when time is ened?
+#TODO try to resize word if word is too long
+#TODO add a end window?
 
 
 class App:
@@ -294,7 +296,7 @@ class App:
     def Button_0_3_command(self):
         print("(0,3)")
         if not self.pause:
-            self.update_current_word(board[0][3])
+            self.update_current_word((0,3))
 
 
 
