@@ -5,7 +5,7 @@ def possible_moves(move, path, max_location):
     direction_list = [(1, 0), (0, 1), (-1, 0), (0, -1),
                      (-1, -1), (-1, 1), (1, 1), (1, -1)]
     for possible_move in direction_list:
-        if 0 <= possible_move[0] + move[0] <= max_location[0] and 0 <= possible_move[1] + move[1] <= max_location[1]:
+        if 0 <= possible_move[0] + move[0] < max_location[0] and 0 <= possible_move[1] + move[1] < max_location[1]:
             if (possible_move[0] + move[0], possible_move[1] + move[1]) not in path:
                 legal_move.append((possible_move[0] + move[0], possible_move[1] + move[1]))
                 possible += 1
@@ -19,7 +19,7 @@ def is_word(path, board, words):
     return form_word(path, board) in words
 
 
-def form_word(path, board):
+def form_word(path: list[tuple[int, int]], board: list[list]):
     """ This function forms the word we want """
     my_word = ""
     for coordinate in path:
@@ -40,4 +40,9 @@ def filtered(words, string):
     """ This function returns a filtered version of words """
     new_words = list(filter(lambda word: word.startswith(string), words))
     return new_words
+
+def remove_word(word_list, string):
+    new_words = list(filter(lambda word: word != string, word_list))
+    return new_words
+
 

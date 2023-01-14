@@ -24,47 +24,78 @@ def is_valid_path(board, path, words):
 def find_length_n_paths(n, board, words):
     """ This function returns all the paths of size n that form a legal word """
     new_words = list(filter(lambda word: len(word) >= n, words))
-    return find_length_helper(n, (0, 0), [], [], start_coord(board)[1:], new_words, new_words, board, False)
+    list_of_paths = []
+    for start_loc in start_coord(board):
+        list_of_paths =  find_length_helper(n, start_loc, list_of_paths, [], new_words, new_words, board, False)
+    return list_of_paths
 
 
 
-def find_length_helper(n: int, loc: tuple, list_of_paths: list[tuple], this_path: list, start_board_coords: list[tuple],\
+def find_length_helper(n: int, loc: tuple, list_of_paths: list[tuple], this_path: list,\
     words: list, filtered_words: list, board: list[list], checking_word_length: bool):
-    """ This function finds all possible combinations of path """
-    # Backtracking - check there are words starting with those letters, else return
+    """ This function finds all possible combinations for words of length n, OR for paths of length n"""
     this_path.append(loc)
     filtered_words = filtered(filtered_words, form_word(this_path, board))
+    # If there are no words starting with this string, go back
     if len(filtered_words) == 0: 
-        if len(this_path) == 1:
-            if len(start_board_coords) == 0:
-                return list_of_paths
-            return find_length_helper(n, start_board_coords[0], list_of_paths, [], start_board_coords[1:], words, words, board, checking_word_length)
-        else:
-            return list_of_paths
-
+        return list_of_paths
+    # Check if we found a word
     if (checking_word_length and len(form_word(this_path, board)) == n) or (not checking_word_length and len(this_path) == n): 
         if is_word(this_path, board, words):
             list_of_paths.append(copy.deepcopy(this_path))
         return list_of_paths
-
     else:
-        # has the tuple [len[board],len[board[0]]
-        for next_loc in possible_moves(loc, this_path, start_board_coords[-1]):
-            list_of_paths = find_length_helper(n, next_loc, list_of_paths, this_path, start_board_coords, words, filtered_words, board, checking_word_length)
-            this_path.pop()
-        
-        list_of_paths = find_length_helper(n, start_board_coords[0], list_of_paths, [], start_board_coords[1:], words, words, board, checking_word_length)
-
+        # Go over every possibility for this particular coordinate
+        for next_loc in possible_moves(loc, this_path, (len(board), len(board[0]))):
+            list_of_paths = find_length_helper(n, next_loc, list_of_paths, this_path, words, filtered_words, board, checking_word_length)
+            this_path.pop() # Cleaning up
     return list_of_paths
             
 
 def find_length_n_words(n, board, words):
     """ This function returns all the possible paths for each word in the words dictionary """
     new_words = list(filter(lambda word: len(word) >= n, words))
-    return find_length_helper(n, (0, 0), [], [], start_coord(board)[1:], new_words, new_words, board, True)
+    list_of_paths = []
+    for start_loc in start_coord(board):
+        list_of_paths =  find_length_helper(n, start_loc, list_of_paths, [], new_words, new_words, board, True)
+    return list_of_paths
+
 
 
 def max_score_paths(board, words):
     """ This function returns the maximal possible score for all the path in the words dictionary """
+    score = 0
+    words_left = []
+    for index in range(16, 0, -1):
+        new_words = list(filter(lambda word: len(word) == index, words)) + words_left
+        #print(new_words, words_left)
+        if len(new_words) > 0:
+            words_left = new_words
+            for start_loc in start_coord(board):
+                score, words_left =  find_score_helper(index, start_loc, score, [], words_left, words_left, board)
+    return score
 
+
+
+
+def find_score_helper(n: int, loc: tuple, score: int, this_path: list, \
+    words: list, filtered_words: list, board: list[list]):
+    """ This function finds all possible combinations of path """
+    # Backtracking - check there are words starting with those letters, else return
+    this_path.append(loc)
+    filtered_words = filtered(filtered_words, form_word(this_path, board))
+    # If there are no more options, return
+    if len(words) == 0 or len(filtered_words) == 0:
+        return score, words
+    #If we found a word, add and return
+    if len(form_word(this_path, board)) == n: 
+        if is_word(this_path, board, words):
+            words = remove_word(words, form_word(this_path, board))
+            score += len(this_path) ** 2
+        return score, words
+    else:
+        for next_loc in possible_moves(loc, this_path, (len(board), len(board[0]))):
+            score, words = find_score_helper(n, next_loc, score, this_path, words, filtered_words, board)
+            this_path.pop() # Cleaning up
+    return score, words
 
