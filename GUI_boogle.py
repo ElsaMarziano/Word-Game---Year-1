@@ -1,6 +1,7 @@
 import datetime
 import tkinter as tk
 import tkinter.font as tkFont
+from helper_functions import *
 
 #TODO make the big program
 #TODO find out how score is calc? current not good
@@ -410,8 +411,13 @@ class App:
         self.num_score["text"] += score
 
     def update_current_word(self, word_corr):
-        self.current_word.config(text=self.current_word.cget("text") + self.board[word_corr[0]][word_corr[1]])
-        self.current_path.append(word_corr)
+        if self.current_path == []:
+            pass
+        else:
+            last_path = self.current_path[-1]
+            if word_corr in all_possible_moves(last_path) and word_corr not in self.current_path:
+                self.current_word.config(text=self.current_word.cget("text") + self.board[word_corr[0]][word_corr[1]])
+                self.current_path.append(word_corr)
 
 
 if __name__ == "__main__":
