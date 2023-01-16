@@ -2,17 +2,9 @@ import datetime
 import tkinter as tk
 import tkinter.font as tkFont
 from helper_functions import *
-
-
-#TODO make the big program
-#TODO find out how score is calc? current not good
-#TODO ask CHATGPT about evreythingggg
-#TODO dicorate
-#TODO how to close the game?
-#TODO change what happen when time is ened?
-#TODO try to resize word if word is too long
-#TODO add a end window?
-
+from boggle_board_randomizer import randomize_board
+from PIL import Image, ImageTk
+from ex11_utils import init_game
 
 
 class App:
@@ -35,21 +27,26 @@ class App:
         self.pause = True
         self.path_already_chosen = []
         self.is_step_legal = True #TODO add a func that check if the step was legal, not in path already and in range
-
         # Create a PhotoImage object for the background image
-        #self.bg_image = PhotoImage(file="path/to/image.png")
-
-        # Set the background image
-        #self.root.config(bg="", bd=0, highlightthickness=0)
-
-        #self.root.config(bg='white')
-        #self.root.config(image=self.bg_image)
+        self.bg_image = ImageTk.PhotoImage(Image.open("background_image.webp"))
+        canvas1 = tk.Canvas( root, width = "100000", height= "100000")
+  
+        canvas1.pack(expand = "False", fill = "both")
+  
+        # Display image
+        canvas1.create_image( 0, 0, image = self.bg_image, 
+                     anchor = "nw")
+        
+        
+# ======================= TIMER =======================
 
         self.end_time = None
         self.countdown_label = tk.Label(root, text="", font=("Arial", 20))
         self.countdown_label.place(x=width - 200, y=10)
 
-        start_button = tk.Button(root, text="Start", command=self.start_countdown)
+# ===================== START BUTTON ===================
+
+        start_button = tk.Button(root, text="Start", command=self.start_game)
         start_button.place(x=10,y=80,width=100,height=60)
         start_button["activeforeground"] = "#ebe6ca"
         start_button["bg"] = "#f0f0f0"
@@ -59,9 +56,9 @@ class App:
         start_button["justify"] = "center"
         self.start_button = start_button
 
-
+# =================== LETTER BUTTONS =================
         Button_3_0=tk.Button(root)
-        Button_3_0["activeforeground"] = "#ebe6ca"
+        Button_3_0["activeforeground"] = "#ebe6ca" 
         Button_3_0["bg"] = "#f0f0f0"
         ft = tkFont.Font(family='Ariel',size=10)
         Button_3_0["font"] = ft
@@ -257,9 +254,10 @@ class App:
         Score["font"] = ft
         Score["fg"] = "#333333"
         Score["justify"] = "center"
-        Score["text"] = "socre"
+        Score["text"] = "Score"
         Score.place(x=0,y=10,width=122,height=33)
         self.Score = Score
+        #Score.wm_attributes('-transparentcolor', '#ab23ff')
 
 
         num_score = tk.Label(root)
@@ -366,14 +364,14 @@ class App:
 
     def submit_command(self):
         if self.current_path in self.legal_paths and self.current_path not in self.path_already_chosen:
-            self.set_score(1)
+            self.set_score(len(self.current_path) ** 2)
             self.path_already_chosen.append(self.current_path)
         self.current_path = []
         self.current_word["text"]= ""
 
 
 
-    def start_countdown(self):
+    def start_game(self):
         if not self.time_started:
             self.end_time = datetime.datetime.now() + datetime.timedelta(minutes=3)
             self.root.after(1000, self.update_countdown)
@@ -407,11 +405,12 @@ class App:
 
 
 if __name__ == "__main__":
-    board =[['R', 'R', 'R', 'B'],
- ['E', 'S', 'S', 'P'],
- ['I', 'M', 'N', 'C'],
- ['I', 'E', 'A', 'T']]
-
+    #opening the file in read mode
+    my_file = open("boggle_dict.txt", "r")
+    words = my_file.read().split(" ")
+    my_file.close()
+    
+    board = randomize_board()
     root = tk.Tk()
-    app = App(root,board,[[(3,1),(3,2),(3,3)]])
+    app = App(root,board, init_game(board, words))
     root.mainloop()

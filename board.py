@@ -1,1 +1,0 @@
-""" This file will contain the graphics for the board - only the part with the letters """
