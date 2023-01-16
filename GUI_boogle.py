@@ -36,6 +36,7 @@ class App:
         self.path_already_chosen = []
         self.is_step_legal = True #TODO add a func that check if the step was legal, not in path already and in range
 
+
         # Create a PhotoImage object for the background image
         #self.bg_image = PhotoImage(file="path/to/image.png")
 
@@ -60,17 +61,17 @@ class App:
         self.start_button = start_button
 
 
-        Button_3_0=tk.Button(root)
-        Button_3_0["activeforeground"] = "#ebe6ca"
-        Button_3_0["bg"] = "#f0f0f0"
+        Button_0_3=tk.Button(root)
+        Button_0_3["activeforeground"] = "#ebe6ca"
+        Button_0_3["bg"] = "#f0f0f0"
         ft = tkFont.Font(family='Ariel',size=10)
-        Button_3_0["font"] = ft
-        Button_3_0["fg"] = "#000000"
-        Button_3_0["justify"] = "center"
-        Button_3_0["text"] = str(self.board[0][3])
-        Button_3_0.place(x=250,y=170,width=70,height=70)
-        Button_3_0["command"] = self.Button_0_3_command
-        self.Button_3_0 = Button_3_0
+        Button_0_3["font"] = ft
+        Button_0_3["fg"] = "#000000"
+        Button_0_3["justify"] = "center"
+        Button_0_3["text"] = str(self.board[0][3])
+        Button_0_3.place(x=250,y=170,width=70,height=70)
+        Button_0_3["command"] = self.Button_0_3_command
+        self.Button_0_3 = Button_0_3
 
         Button_1_3=tk.Button(root)
         Button_1_3["activeforeground"] = "#ebe6ca"
@@ -291,7 +292,30 @@ class App:
         submit.place(x=340,y=170,width=142,height=100)
         submit["command"] = self.submit_command
 
+        word_already_chosen = tk.Label(root)
+        ft = tkFont.Font(family='Times', size=10)
+        word_already_chosen["font"] = ft
+        word_already_chosen["fg"] = "#333333"
+        word_already_chosen["justify"] = "center"
+        word_already_chosen["text"] = ""
+        word_already_chosen.place(x=370, y=290, width=87, height=190)
+        self.word_already_chosen = word_already_chosen
+        self.all_button = [self.Button_3_0, self.Button_3_1, self.Button_3_2, self.Button_3_3,
+                           self.Button_2_0, self.Button_2_1, self.Button_2_2, self.Button_2_3,
+                           self.Button_1_0, self.Button_1_1, self.Button_1_2, self.Button_1_3,
+                           self.Button_0_0, self.Button_0_1, self.Button_0_2, self.Button_0_3]
 
+        self.all_button_info = [self.Button_3_0.place_info(), self.Button_3_1.place_info(),
+                                self.Button_3_2.place_info(), self.Button_3_3.place_info(),
+                                self.Button_2_0.place_info(), self.Button_2_1.place_info(),
+                                self.Button_2_2.place_info(), self.Button_2_3.place_info(),
+                                self.Button_1_0.place_info(), self.Button_1_1.place_info(),
+                                self.Button_1_2.place_info(), self.Button_1_3.place_info(),
+                                self.Button_0_0.place_info(), self.Button_0_1.place_info(),
+                                self.Button_0_2.place_info(), self.Button_0_3.place_info()]
+
+        for button in self.all_button:
+            button.place_forget()
 
 
     def choose_letter(self,corr):
@@ -368,6 +392,9 @@ class App:
         if self.current_path in self.legal_paths and self.current_path not in self.path_already_chosen:
             self.set_score(1)
             self.path_already_chosen.append(self.current_path)
+            for letter in self.current_path:
+                self.word_already_chosen.config(text=self.word_already_chosen.cget("text") + self.board[letter[0]][letter[1]])
+            self.word_already_chosen.config(text=self.word_already_chosen.cget("text") + "\n")
         self.current_path = []
         self.current_word["text"]= ""
 
@@ -375,6 +402,8 @@ class App:
 
     def start_countdown(self):
         if not self.time_started:
+            for but in range(len(self.all_button)):
+                self.all_button[but].place(**self.all_button_info[but])
             self.end_time = datetime.datetime.now() + datetime.timedelta(minutes=3)
             self.root.after(1000, self.update_countdown)
             self.time_started = True
@@ -413,5 +442,5 @@ if __name__ == "__main__":
  ['I', 'E', 'A', 'T']]
 
     root = tk.Tk()
-    app = App(root,board,[[(3,1),(3,2),(3,3)]])
+    app = App(root,board,[[(3,1),(3,2),(3,3)],[(2,1),(2,2),(2,3)]])
     root.mainloop()
