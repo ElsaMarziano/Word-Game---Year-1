@@ -12,12 +12,13 @@ import tkinter.font as tkFont
 #TODO add a end window?
 
 
+
 class App:
     def __init__(self, root,board,legal_paths):
         #setting title
         self.root = root
         self.board = board
-        root.title("undefined")
+        root.title("Boogle game")
         #setting window size
         width=504
         height=493
@@ -31,6 +32,7 @@ class App:
         self.current_path =[] #update every press
         self.pause = True
         self.path_already_chosen = []
+        self.is_step_legal = True #TODO add a func that check if the step was legal, not in path already and in range
 
         # Create a PhotoImage object for the background image
         #self.bg_image = PhotoImage(file="path/to/image.png")
