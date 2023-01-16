@@ -413,6 +413,7 @@ class App:
         if datetime.datetime.now() > self.end_time:
             self.countdown_label.config(text="Time's up!")
             self.pause = True
+
         else:
             time_left = self.end_time - datetime.datetime.now()
             minutes, seconds = divmod(time_left.seconds, 60)
