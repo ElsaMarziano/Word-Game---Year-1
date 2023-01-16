@@ -7,8 +7,6 @@ Board = List[List[str]]
 Path = List[Tuple[int, int]]
 
 
-""" This file will contain the four functions we have to write according to the exercise's pdf """
-
 
 def is_valid_path(board: Board, path: Path, words: list):
     """ This function receives a board, a path and a list of words, check if the path is legal and
@@ -107,7 +105,9 @@ def init_game(board: Board, words: list):
     """ This function receives a board and reutrns all the legal paths inside this board """
     paths = []
     for n in range(1, 17):
-        paths.append(find_length_n_paths(n, board, words))
+        new_paths = find_length_n_paths(n, board, words)
+        if len(new_paths) > 0:
+            paths.extend(new_paths)
     return paths
 
     

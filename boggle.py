@@ -3,7 +3,6 @@ import tkinter as tk
 import tkinter.font as tkFont
 from helper_functions import *
 from boggle_board_randomizer import randomize_board
-from PIL import Image, ImageTk
 from ex11_utils import init_game
 
 
@@ -26,17 +25,9 @@ class App:
         self.current_path =[] #update every press
         self.pause = True
         self.path_already_chosen = []
-        self.is_step_legal = True #TODO add a func that check if the step was legal, not in path already and in range
-        # Create a PhotoImage object for the background image
-        self.bg_image = ImageTk.PhotoImage(Image.open("background_image.webp"))
-        canvas1 = tk.Canvas( root, width = "100000", height= "100000")
-  
-        canvas1.pack(expand = "False", fill = "both")
-  
-        # Display image
-        canvas1.create_image( 0, 0, image = self.bg_image, 
-                     anchor = "nw")
-        
+        self.is_step_legal = True
+        #root['bg'] = "#D5DDC5"
+
         
 # ======================= TIMER =======================
 
@@ -435,9 +426,8 @@ class App:
 if __name__ == "__main__":
     #opening the file in read mode
     my_file = open("boggle_dict.txt", "r")
-    words = my_file.read().split(" ")
+    words = my_file.read().split("\n")
     my_file.close()
-    
     board = randomize_board()
     root = tk.Tk()
     app = App(root,board, init_game(board, words))
