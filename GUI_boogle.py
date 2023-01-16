@@ -1,6 +1,8 @@
 import datetime
 import tkinter as tk
 import tkinter.font as tkFont
+from helper_functions import *
+
 
 #TODO make the big program
 #TODO find out how score is calc? current not good
@@ -11,14 +13,7 @@ import tkinter.font as tkFont
 #TODO try to resize word if word is too long
 #TODO add a end window?
 
-def all_possible_moves(move):
-    legal_move = []
-    possible = 0
-    direction_list = [(1, 0), (0, 1), (-1, 0), (0, -1),
-                      (-1, -1), (-1, 1), (1, 1), (1, -1)]
-    for possible_move in direction_list:
-        legal_move.append((possible_move[0] + move[0], possible_move[1] + move[1]))
-    return legal_move
+
 
 class App:
     def __init__(self, root,board,legal_paths):
