@@ -52,6 +52,7 @@ def filtered(words, string):
     return new_words
 
 def remove_word(word_list, string):
+    """ This function returns a list containing only words that are different from the string the function received """
     new_words = list(filter(lambda word: word != string, word_list))
     return new_words
 
