@@ -1,7 +1,6 @@
 import datetime
 import tkinter as tk
 import tkinter.font as tkFont
-from helper_functions import *
 
 #TODO make the big program
 #TODO find out how score is calc? current not good
@@ -12,7 +11,14 @@ from helper_functions import *
 #TODO try to resize word if word is too long
 #TODO add a end window?
 
-
+def all_possible_moves(move):
+    legal_move = []
+    possible = 0
+    direction_list = [(1, 0), (0, 1), (-1, 0), (0, -1),
+                      (-1, -1), (-1, 1), (1, 1), (1, -1)]
+    for possible_move in direction_list:
+        legal_move.append((possible_move[0] + move[0], possible_move[1] + move[1]))
+    return legal_move
 
 class App:
     def __init__(self, root,board,legal_paths):
@@ -297,90 +303,73 @@ class App:
         self.current_word["text"] = self.current_word["text"] + self.board[corr[0]][corr[1]]
 
     def Button_0_3_command(self):
-        print("(0,3)")
         if not self.pause:
             self.update_current_word((0,3))
 
 
 
     def Button_1_3_command(self):
-        print("(1,3)")
         if not self.pause:
             self.update_current_word((1,3))
 
     def Button_2_3_command(self):
-        print("(2,3)")
         if not self.pause:
             self.update_current_word((2,3))
 
     def Button_3_3_command(self):
-        print("(3,3)")
         if not self.pause:
             self.update_current_word((3,3))
 
     def Button_0_2_command(self):
-        print("(0,2)")
         if not self.pause:
             self.update_current_word((0,2))
 
     def Button_1_2_command(self):
-        print("(1,2)")
         if not self.pause:
             self.update_current_word((1,2))
 
     def Button_2_2_command(self):
-        print("(2,2)")
         if not self.pause:
             self.update_current_word((2,2))
 
     def Button_3_2_command(self):
-        print("(3,2)")
         if not self.pause:
             self.update_current_word((3,2))
 
     def Button_0_1_command(self):
-        print("(0,1)")
         if not self.pause:
             self.update_current_word((0,1))
 
 
     def Button_2_1_command(self):
-        print("(2,1)")
         if not self.pause:
             self.update_current_word((2,1))
 
     def Button_3_1_command(self):
-        print("(3,1)")
         if not self.pause:
             self.update_current_word((3,1))
 
     def Button_1_1_command(self):
-        print("(1,1)")
         if not self.pause:
             self.update_current_word((1,1))
 
     def Button_0_0_command(self):
-        print("(0,0")
         if not self.pause:
             self.update_current_word((0,0))
 
     def Button_1_0_command(self):
-        print("(1,0")
         if not self.pause:
             self.update_current_word((1,0))
 
     def Button_2_0_command(self):
-        print("(2,0")
         if not self.pause:
             self.update_current_word((2,0))
 
     def Button_3_0_command(self):
-        print("(3,0")
         if not self.pause:
             self.update_current_word((3,0))
 
     def submit_command(self):
-        print(self.current_path)
         if self.current_path in self.legal_paths and self.current_path not in self.path_already_chosen:
             self.set_score(1)
             self.path_already_chosen.append(self.current_path)
@@ -412,6 +401,8 @@ class App:
 
     def update_current_word(self, word_corr):
         if self.current_path == []:
+            self.current_word.config(text=self.current_word.cget("text") + self.board[word_corr[0]][word_corr[1]])
+            self.current_path.append(word_corr)
             pass
         else:
             last_path = self.current_path[-1]

@@ -1,3 +1,7 @@
+from typing import List, Tuple, Iterable, Optional
+
+Board = List[List[str]]
+Path = List[Tuple[int, int]]
 def possible_moves(move, path, max_location):
     """ This function returns all the possible and legal moves for a given coordinate """
     legal_move = []
@@ -24,7 +28,7 @@ def all_possible_moves(move):
     return legal_move
 
 
-def is_word(path, board, words):
+def is_word(path, Board, words):
     """ This function gets a path and checks if the word formed by the given path forms a word in our dictionary """
     return form_word(path, board) in words
 
