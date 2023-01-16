@@ -1,4 +1,9 @@
-def possible_moves(move, path, max_location):
+from typing import List, Tuple, Iterable, Optional
+
+Board = List[List[str]]
+Path = List[Tuple[int, int]]
+
+def possible_moves(move: Tuple[int, int], path: Path, max_location: Tuple[int, int]):
     """ This function returns all the possible and legal moves for a given coordinate """
     legal_move = []
     possible = 0
@@ -14,12 +19,12 @@ def possible_moves(move, path, max_location):
     return legal_move
 
 
-def is_word(path, board, words):
+def is_word(path: Path, board: Board, words: list):
     """ This function gets a path and checks if the word formed by the given path forms a word in our dictionary """
     return form_word(path, board) in words
 
 
-def form_word(path: list[tuple[int, int]], board: list[list]):
+def form_word(path: Path, board: Board):
     """ This function forms the word we want """
     my_word = ""
     for coordinate in path:
@@ -27,7 +32,7 @@ def form_word(path: list[tuple[int, int]], board: list[list]):
     return my_word
 
 
-def start_coord(board):
+def start_coord(board: Board):
     """ THis function returns a list of all coordinates in a board """
     coord_of_all = []
     for row in range(len(board)):
@@ -36,12 +41,12 @@ def start_coord(board):
     return coord_of_all
 
 
-def filtered(words, string):
+def filtered(words: list, string: str):
     """ This function returns a filtered version of words """
     new_words = list(filter(lambda word: word.startswith(string), words))
     return new_words
 
-def remove_word(word_list, string):
+def remove_word(word_list: list, string: str):
     """ This function returns a list containing only words that are different from the string the function received """
     new_words = list(filter(lambda word: word != string, word_list))
     return new_words
