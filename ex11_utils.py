@@ -1,7 +1,7 @@
-from typing import List, Tuple, Iterable, Optional
 from helper_functions import *
 from boggle_board_randomizer import *
 import copy
+from typing import List, Tuple, Iterable, Optional
 
 Board = List[List[str]]
 Path = List[Tuple[int, int]]
