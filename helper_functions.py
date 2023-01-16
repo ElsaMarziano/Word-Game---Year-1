@@ -19,7 +19,16 @@ def possible_moves(move: Tuple[int, int], path: Path, max_location: Tuple[int, i
     return legal_move
 
 
-def is_word(path: Path, board: Board, words: list):
+def all_possible_moves(move: Tuple[int, int]):
+    legal_move = []
+    direction_list = [(1, 0), (0, 1), (-1, 0), (0, -1),
+                      (-1, -1), (-1, 1), (1, 1), (1, -1)]
+    for possible_move in direction_list:
+        legal_move.append((possible_move[0] + move[0], possible_move[1] + move[1]))
+    return legal_move
+
+
+def is_word(path, board, words):
     """ This function gets a path and checks if the word formed by the given path forms a word in our dictionary """
     return form_word(path, board) in words
 
