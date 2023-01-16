@@ -22,7 +22,7 @@ def is_valid_path(board: Board, path: Path, words: list):
         if path[step + 1] not in possible_moves(path[step], path[:step + 1], (len(board) - 1, len(board[0]) - 1)):
             return
         else:
-            word += str(board[path[step][0]][path[step][1]])
+            word += str(board[path[step+1][0]][path[step+1][1]])
     return word
 
 
@@ -94,7 +94,7 @@ def find_score_helper(n: int, loc: tuple, list_of_paths: list[Path], this_path: 
     if len(form_word(this_path, board)) == n: 
         if is_word(this_path, board, words):
             words = remove_word(words, form_word(this_path, board))
-            list_of_paths.append(this_path)
+            list_of_paths.append(copy.deepcopy(this_path))
         return list_of_paths, words
     else:
         for next_loc in possible_moves(loc, this_path, (len(board), len(board[0]))):
