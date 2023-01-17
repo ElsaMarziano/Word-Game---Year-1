@@ -26,6 +26,7 @@ class App:
         self.pause = True
         self.path_already_chosen = []
         self.is_step_legal = True
+        self.play_again = False
         #root['bg'] = "#D5DDC5"
 
         
@@ -387,12 +388,16 @@ class App:
         self.current_word["text"]= ""
 
 
+    def play_again_button_command(self):
+        self.play_again = True
+        self.root.quit()
+
 
     def start_game(self):
         if not self.time_started:
             for but in range(len(self.all_button)):
                 self.all_button[but].place(**self.all_button_info[but])
-            self.end_time = datetime.datetime.now() + datetime.timedelta(minutes=3)
+            self.end_time = datetime.datetime.now() + datetime.timedelta(minutes=0)
             self.root.after(1000, self.update_countdown)
             self.time_started = True
             self.pause = False
@@ -401,6 +406,16 @@ class App:
         if datetime.datetime.now() > self.end_time:
             self.countdown_label.config(text="Time's up!")
             self.pause = True
+            play_again_button = tk.Button(root)
+            play_again_button["bg"] = "#f0f0f0"
+            ft = tkFont.Font(family='Times', size=10)
+            play_again_button["font"] = ft
+            play_again_button["fg"] = "#000000"
+            play_again_button["justify"] = "center"
+            play_again_button["text"] = "play again?"
+            play_again_button.place(x=390, y=70, width=79, height=57)
+            play_again_button["command"] = self.play_again_button_command
+            self.play_again_button = play_again_button
 
         else:
             time_left = self.end_time - datetime.datetime.now()
@@ -429,7 +444,12 @@ if __name__ == "__main__":
     my_file = open("boggle_dict.txt", "r")
     words = my_file.read().split("\n")
     my_file.close()
-    board = randomize_board()
-    root = tk.Tk()
-    app = App(root,board, init_game(board, words))
-    root.mainloop()
+    play_again = True
+    while play_again:
+        board = randomize_board()
+        root = tk.Tk()
+        app = App(root,board, init_game(board, words))
+        #TODO add a loop and
+        root.mainloop()
+        play_again = app.play_again
+

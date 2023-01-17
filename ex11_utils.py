@@ -8,8 +8,8 @@ Path = List[Tuple[int, int]]
 
 
 
-def is_valid_path(board: Board, path: Path, words: list):
-    """ This function receives a board, a path and a list of words, check if the path is legal and
+def is_valid_path(board: Board, path: Path, words: List):
+    """ This function receives a board, a path and a List of words, check if the path is legal and
     if so, returns the word we formed, if it exists in the words dictionary """
     word = board[path[0][0]][path[0][1]]
     for step in range(len(path)):
@@ -24,7 +24,7 @@ def is_valid_path(board: Board, path: Path, words: list):
     return word
 
 
-def find_length_n_paths(n: int, board: Board, words: list):
+def find_length_n_paths(n: int, board: Board, words: List):
     """ This function returns all the paths of size n that form a legal word """
     new_words = list(filter(lambda word: len(word) >= n, words))
     list_of_paths = []
@@ -34,8 +34,8 @@ def find_length_n_paths(n: int, board: Board, words: list):
 
 
 
-def find_length_helper(n: int, loc: tuple[int, int], list_of_paths: list[Path], this_path: Path,\
-    words: list, filtered_words: list, board: Board, checking_word_length: bool):
+def find_length_helper(n: int, loc: Tuple[int, int], list_of_paths: List[Path], this_path: Path,\
+    words: List, filtered_words: List, board: Board, checking_word_length: bool):
     """ This function finds all possible combinations for words of length n, OR for paths of length n"""
     this_path.append(loc)
     filtered_words = filtered(filtered_words, form_word(this_path, board))
@@ -55,9 +55,9 @@ def find_length_helper(n: int, loc: tuple[int, int], list_of_paths: list[Path], 
     return list_of_paths
             
 
-def find_length_n_words(n: int, board: Board, words: list):
+def find_length_n_words(n: int, board: Board, words: List):
     """ This function returns all the possible paths for each word in the words dictionary """
-    new_words = list(filter(lambda word: len(word) >= n, words))
+    new_words = List(filter(lambda word: len(word) >= n, words))
     list_of_paths = []
     for start_loc in start_coord(board):
         list_of_paths =  find_length_helper(n, start_loc, list_of_paths, [], new_words, new_words, board, True)
@@ -65,12 +65,12 @@ def find_length_n_words(n: int, board: Board, words: list):
 
 
 
-def max_score_paths(board: Board, words: list):
+def max_score_paths(board: Board, words: List):
     """ This function returns the maximal possible score for all the path in the words dictionary """
     list_of_paths = []
     words_left = []
     for index in range(16, 0, -1):
-        new_words = list(filter(lambda word: len(word) == index, words)) + words_left
+        new_words = List(filter(lambda word: len(word) == index, words)) + words_left
         if len(new_words) > 0:
             words_left = new_words
             for start_loc in start_coord(board):
@@ -79,8 +79,8 @@ def max_score_paths(board: Board, words: list):
 
 
 
-def find_score_helper(n: int, loc: tuple, list_of_paths: list[Path], this_path: Path, \
-    words: list, filtered_words: list, board: Board):
+def find_score_helper(n: int, loc: Tuple, list_of_paths: List[Path], this_path: Path, \
+    words: List, filtered_words: List, board: Board):
     """ This function finds all possible combinations of path and returns a score """
     # Backtracking - check there are words starting with those letters, else return
     this_path.append(loc)
@@ -101,7 +101,7 @@ def find_score_helper(n: int, loc: tuple, list_of_paths: list[Path], this_path: 
     return list_of_paths, words
 
 
-def init_game(board: Board, words: list):
+def init_game(board: Board, words: List):
     """ This function receives a board and reutrns all the legal paths inside this board """
     paths = []
     for n in range(1, 17):
