@@ -390,14 +390,14 @@ class App:
 
     def play_again_button_command(self):
         self.play_again = True
-        self.root.quit()
+        self.root.destroy()
 
 
     def start_game(self):
         if not self.time_started:
             for but in range(len(self.all_button)):
                 self.all_button[but].place(**self.all_button_info[but])
-            self.end_time = datetime.datetime.now() + datetime.timedelta(minutes=0)
+            self.end_time = datetime.datetime.now() + datetime.timedelta(minutes=3)
             self.root.after(1000, self.update_countdown)
             self.time_started = True
             self.pause = False
