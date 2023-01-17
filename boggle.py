@@ -27,22 +27,23 @@ class App:
         self.path_already_chosen = []
         self.is_step_legal = True
         self.play_again = False
-        #root['bg'] = "#D5DDC5"
+        root['bg'] = "#FCEED9"
 
         
 # ======================= TIMER =======================
 
         self.end_time = None
-        self.countdown_label = tk.Label(root, text="", font=("Arial", 20))
+        self.countdown_label = tk.Label(root, text="", font=("Courier", 20))
         self.countdown_label.place(x=width - 200, y=10)
+        self.countdown_label["bg"] = "#FCEED9"
 
 # ===================== START BUTTON ===================
 
         start_button = tk.Button(root, text="Start", command=self.start_game)
         start_button.place(x=10,y=80,width=100,height=60)
         start_button["activeforeground"] = "#ebe6ca"
-        start_button["bg"] = "#f0f0f0"
-        ft = tkFont.Font(family='Ariel', size=10)
+        start_button["bg"] = "#E7DDCF"
+        ft = tkFont.Font(family='Courier', size=10)
         start_button["font"] = ft
         start_button["fg"] = "#000000"
         start_button["justify"] = "center"
@@ -51,8 +52,8 @@ class App:
 # =================== LETTER BUTTONS =================
         Button_0_3=tk.Button(root)
         Button_0_3["activeforeground"] = "#ebe6ca" 
-        Button_0_3["bg"] = "#f0f0f0"
-        ft = tkFont.Font(family='Ariel',size=10)
+        Button_0_3["bg"] = "#E7DDCF"
+        ft = tkFont.Font(family='Courier',size=10)
         Button_0_3["font"] = ft
         Button_0_3["fg"] = "#000000"
         Button_0_3["justify"] = "center"
@@ -63,8 +64,8 @@ class App:
 
         Button_1_3=tk.Button(root)
         Button_1_3["activeforeground"] = "#ebe6ca"
-        Button_1_3["bg"] = "#f0f0f0"
-        ft = tkFont.Font(family='Ariel',size=10)
+        Button_1_3["bg"] = "#E7DDCF"
+        ft = tkFont.Font(family='Courier',size=10)
         Button_1_3["font"] = ft
         Button_1_3["fg"] = "#000000"
         Button_1_3["justify"] = "center"
@@ -75,8 +76,8 @@ class App:
 
         Button_2_3=tk.Button(root)
         Button_2_3["activeforeground"] = "#ebe6ca"
-        Button_2_3["bg"] = "#f0f0f0"
-        ft = tkFont.Font(family='Ariel',size=10)
+        Button_2_3["bg"] = "#E7DDCF"
+        ft = tkFont.Font(family='Courier',size=10)
         Button_2_3["font"] = ft
         Button_2_3["fg"] = "#000000"
         Button_2_3["justify"] = "center"
@@ -87,8 +88,8 @@ class App:
 
         Button_3_3=tk.Button(root)
         Button_3_3["activeforeground"] = "#ebe6ca"
-        Button_3_3["bg"] = "#f0f0f0"
-        ft = tkFont.Font(family='Ariel',size=10)
+        Button_3_3["bg"] = "#E7DDCF"
+        ft = tkFont.Font(family='Courier',size=10)
         Button_3_3["font"] = ft
         Button_3_3["fg"] = "#000000"
         Button_3_3["justify"] = "center"
@@ -99,8 +100,8 @@ class App:
 
         Button_0_2=tk.Button(root)
         Button_0_2["activeforeground"] = "#ebe6ca"
-        Button_0_2["bg"] = "#f0f0f0"
-        ft = tkFont.Font(family='Ariel',size=10)
+        Button_0_2["bg"] = "#E7DDCF"
+        ft = tkFont.Font(family='Courier',size=10)
         Button_0_2["font"] = ft
         Button_0_2["fg"] = "#000000"
         Button_0_2["justify"] = "center"
@@ -111,8 +112,8 @@ class App:
 
         Button_1_2=tk.Button(root)
         Button_1_2["activeforeground"] = "#ebe6ca"
-        Button_1_2["bg"] = "#f0f0f0"
-        ft = tkFont.Font(family='Ariel',size=10)
+        Button_1_2["bg"] = "#E7DDCF"
+        ft = tkFont.Font(family='Courier',size=10)
         Button_1_2["font"] = ft
         Button_1_2["fg"] = "#000000"
         Button_1_2["justify"] = "center"
@@ -123,8 +124,8 @@ class App:
 
         Button_2_2=tk.Button(root)
         Button_2_2["activeforeground"] = "#ebe6ca"
-        Button_2_2["bg"] = "#f0f0f0"
-        ft = tkFont.Font(family='Ariel',size=10)
+        Button_2_2["bg"] = "#E7DDCF"
+        ft = tkFont.Font(family='Courier',size=10)
         Button_2_2["font"] = ft
         Button_2_2["fg"] = "#000000"
         Button_2_2["justify"] = "center"
@@ -135,8 +136,8 @@ class App:
 
         Button_3_2=tk.Button(root)
         Button_3_2["activeforeground"] = "#ebe6ca"
-        Button_3_2["bg"] = "#f0f0f0"
-        ft = tkFont.Font(family='Ariel',size=10)
+        Button_3_2["bg"] = "#E7DDCF"
+        ft = tkFont.Font(family='Courier',size=10)
         Button_3_2["font"] = ft
         Button_3_2["fg"] = "#000000"
         Button_3_2["justify"] = "center"
@@ -147,8 +148,8 @@ class App:
 
         Button_0_1=tk.Button(root)
         Button_0_1["activeforeground"] = "#ebe6ca"
-        Button_0_1["bg"] = "#f0f0f0"
-        ft = tkFont.Font(family='Ariel',size=10)
+        Button_0_1["bg"] = "#E7DDCF"
+        ft = tkFont.Font(family='Courier',size=10)
         Button_0_1["font"] = ft
         Button_0_1["fg"] = "#000000"
         Button_0_1["justify"] = "center"
@@ -159,8 +160,8 @@ class App:
 
         Button_2_1=tk.Button(root)
         Button_2_1["activeforeground"] = "#ebe6ca"
-        Button_2_1["bg"] = "#f0f0f0"
-        ft = tkFont.Font(family='Ariel',size=10)
+        Button_2_1["bg"] = "#E7DDCF"
+        ft = tkFont.Font(family='Courier',size=10)
         Button_2_1["font"] = ft
         Button_2_1["fg"] = "#000000"
         Button_2_1["justify"] = "center"
@@ -171,8 +172,8 @@ class App:
 
         Button_3_1=tk.Button(root)
         Button_3_1["activeforeground"] = "#ebe6ca"
-        Button_3_1["bg"] = "#f0f0f0"
-        ft = tkFont.Font(family='Ariel',size=10)
+        Button_3_1["bg"] = "#E7DDCF"
+        ft = tkFont.Font(family='Courier',size=10)
         Button_3_1["font"] = ft
         Button_3_1["fg"] = "#000000"
         Button_3_1["justify"] = "center"
@@ -183,8 +184,8 @@ class App:
 
         Button_1_1=tk.Button(root)
         Button_1_1["activeforeground"] = "#ebe6ca"
-        Button_1_1["bg"] = "#f0f0f0"
-        ft = tkFont.Font(family='Ariel',size=10)
+        Button_1_1["bg"] = "#E7DDCF"
+        ft = tkFont.Font(family='Courier',size=10)
         Button_1_1["font"] = ft
         Button_1_1["fg"] = "#000000"
         Button_1_1["justify"] = "center"
@@ -195,8 +196,8 @@ class App:
 
         Button_0_0=tk.Button(root)
         Button_0_0["activeforeground"] = "#ebe6ca"
-        Button_0_0["bg"] = "#f0f0f0"
-        ft = tkFont.Font(family='Ariel',size=10)
+        Button_0_0["bg"] = "#E7DDCF"
+        ft = tkFont.Font(family='Courier',size=10)
         Button_0_0["font"] = ft
         Button_0_0["fg"] = "#000000"
         Button_0_0["justify"] = "center"
@@ -207,8 +208,8 @@ class App:
 
         Button_1_0=tk.Button(root)
         Button_1_0["activeforeground"] = "#ebe6ca"
-        Button_1_0["bg"] = "#f0f0f0"
-        ft = tkFont.Font(family='Ariel',size=10)
+        Button_1_0["bg"] = "#E7DDCF"
+        ft = tkFont.Font(family='Courier',size=10)
         Button_1_0["font"] = ft
         Button_1_0["fg"] = "#000000"
         Button_1_0["justify"] = "center"
@@ -219,8 +220,8 @@ class App:
 
         Button_2_0=tk.Button(root)
         Button_2_0["activeforeground"] = "#ebe6ca"
-        Button_2_0["bg"] = "#f0f0f0"
-        ft = tkFont.Font(family='Ariel',size=10)
+        Button_2_0["bg"] = "#E7DDCF"
+        ft = tkFont.Font(family='Courier',size=10)
         Button_2_0["font"] = ft
         Button_2_0["fg"] = "#000000"
         Button_2_0["justify"] = "center"
@@ -231,8 +232,8 @@ class App:
 
         Button_3_0=tk.Button(root)
         Button_3_0["activeforeground"] = "#ebe6ca"
-        Button_3_0["bg"] = "#f0f0f0"
-        ft = tkFont.Font(family='Ariel',size=10)
+        Button_3_0["bg"] = "#E7DDCF"
+        ft = tkFont.Font(family='Courier',size=10)
         Button_3_0["font"] = ft
         Button_3_0["fg"] = "#000000"
         Button_3_0["justify"] = "center"
@@ -242,28 +243,30 @@ class App:
         self.Button_3_0 = Button_3_0
 
         Score=tk.Label(root)
-        ft = tkFont.Font(family='Ariel',size=28)
+        ft = tkFont.Font(family='Courier',size=28)
         Score["font"] = ft
         Score["fg"] = "#333333"
         Score["justify"] = "center"
         Score["text"] = "Score"
-        Score.place(x=0,y=10,width=122,height=33)
+        Score["bg"] = "#FCEED9"
+        Score.place(x=0,y=10,width=115,height=33)
         self.Score = Score
         #Score.wm_attributes('-transparentcolor', '#ab23ff')
 
 
         num_score = tk.Label(root)
-        ft = tkFont.Font(family='Ariel', size=28)
+        ft = tkFont.Font(family='Courier', size=28)
         num_score["font"] = ft
         num_score["fg"] = "#333333"
         num_score["justify"] = "center"
         num_score["text"] = 0
+        num_score["bg"] = "#FCEED9"
         num_score.place(x=110,y=15,width=70,height=30)
         self.num_score = num_score
 
         current_word=tk.Label(root)
-        current_word["bg"] = "#ecf2f2"
-        ft = tkFont.Font(family='Ariel',size=28)
+        current_word["bg"] = "#FCEED9"
+        ft = tkFont.Font(family='Courier',size=28)
         current_word["font"] = ft
         current_word["fg"] = "#01040b"
         current_word["justify"] = "center"
@@ -272,12 +275,12 @@ class App:
         self.current_word = current_word
 
         submit=tk.Button(root)
-        submit["bg"] = "#f0f0f0"
-        ft = tkFont.Font(family='Ariel',size=10)
+        submit["bg"] = "#E7DDCF"
+        ft = tkFont.Font(family='Courier',size=10)
         submit["font"] = ft
         submit["fg"] = "#000000"
         submit["justify"] = "center"
-        submit["text"] = "submit"
+        submit["text"] = "Submit"
         submit.place(x=340,y=170,width=142,height=100)
         submit["command"] = self.submit_command
 
@@ -287,6 +290,7 @@ class App:
         word_already_chosen["fg"] = "#333333"
         word_already_chosen["justify"] = "center"
         word_already_chosen["text"] = ""
+        word_already_chosen["bg"] = "#FCEED9"
         word_already_chosen.place(x=370, y=290, width=87, height=190)
         self.word_already_chosen = word_already_chosen
         self.all_button = [self.Button_3_0, self.Button_3_1, self.Button_3_2, self.Button_3_3,
@@ -407,7 +411,7 @@ class App:
             self.countdown_label.config(text="Time's up!")
             self.pause = True
             play_again_button = tk.Button(root)
-            play_again_button["bg"] = "#f0f0f0"
+            play_again_button["bg"] = "#E7DDCF"
             ft = tkFont.Font(family='Times', size=10)
             play_again_button["font"] = ft
             play_again_button["fg"] = "#000000"
@@ -442,14 +446,20 @@ class App:
 if __name__ == "__main__":
     #opening the file in read mode
     my_file = open("boggle_dict.txt", "r")
-    words = my_file.read().split("\n")
+    #words = my_file.read().split("\n")
+    words = []
     my_file.close()
     play_again = True
     while play_again:
         board = randomize_board()
         root = tk.Tk()
         app = App(root,board, init_game(board, words))
-        #TODO add a loop and
         root.mainloop()
         play_again = app.play_again
 
+    board = randomize_board()
+    root = tk.Tk()
+    #app = App(root,board, init_game(board, words))
+    app= App(root,board, [])
+
+    root.mainloop()
