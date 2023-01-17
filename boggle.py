@@ -449,6 +449,7 @@ if __name__ == "__main__":
         board = randomize_board()
         root = tk.Tk()
         app = App(root,board, init_game(board, words))
+        play_again = app.play_again
         #TODO add a loop and
         root.mainloop()
         play_again = app.play_again
